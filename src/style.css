@@ -149,6 +149,7 @@ h6 {
 .detail {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 6rem);
   margin-top: 0.625rem;
 }
 
@@ -158,8 +159,9 @@ h6 {
   justify-content: center;
   gap: 0.5rem;
   align-items: center;
+
   justify-self: center;
-  align-self: center;
+  align-self: self-start;
 }
 
 .detail .col img {
