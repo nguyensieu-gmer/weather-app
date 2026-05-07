@@ -49,6 +49,7 @@ class RenderData {
         this.UVIndex = document.getElementById('uvindex');
         this.UIweather = document.querySelector('.weather');
         this.error = document.querySelector('.error');
+        this.UVProgress = document.getElementById('UV_progress');
 
         this.bindEvent();
     }
@@ -61,17 +62,16 @@ class RenderData {
         this.inputCity.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 const city = this.inputCity.value;
-                this.setContent(city);
+                this.renderWeather(city);
+                this.renderAQI(city);
             }
         });
     }
 
-    async setContent(city) {
+    async renderWeather(city) {
         try {
-            const [weather, airQuality] = await Promise.all([
-                this.fetchData.takeWeatherConditionOfCity(city),
-                this.fetchData.takeAirQualityOfCity(city),
-            ]);
+            const weather =
+                await this.fetchData.takeWeatherConditionOfCity(city);
 
             this.getIcon(weather.currentConditions.icon);
             this.precipProb.textContent =
@@ -81,8 +81,11 @@ class RenderData {
             this.currentCity.textContent = weather.address;
             this.temperature.textContent =
                 Math.round(weather.currentConditions.temp) + '°C';
-            this.air.textContent = airQuality.data.aqi;
             this.UVIndex.textContent = weather.currentConditions.uvindex;
+
+            console.log(weather.currentConditions.uvindex);
+
+            this.renderUVProgress(weather.currentConditions.uvindex, 11);
 
             this.UIweather.style.display = 'block';
             this.error.style.display = 'none';
@@ -90,6 +93,17 @@ class RenderData {
             this.UIweather.style.display = 'none';
             this.error.style.display = 'block';
             console.error(error);
+        }
+    }
+
+    async renderAQI(city) {
+        try {
+            const airQuality = await this.fetchData.takeAirQualityOfCity(city);
+            this.air.textContent =
+                airQuality.data.aqi !== '-' ? airQuality.data.aqi : 'Not found';
+        } catch (error) {
+            console.error(error);
+            this.air.textContent = 'Not found';
         }
     }
 
@@ -101,6 +115,25 @@ class RenderData {
             icon = await import(`./weather_icon_library/clear-day.png`);
         }
         this.weatherIcon.src = icon.default;
+    }
+
+    renderUVProgress(UIIdex, maxvalue) {
+        // maxvalue = 11+
+        let color;
+        if (UIIdex < 2) {
+            color = 'rgba(121, 254, 121, 0.508)';
+        } else if (UIIdex < 6) {
+            color = 'rgba(255, 247, 105, 0.825)';
+        } else if (UIIdex < 8) {
+            color = 'rgba(255, 119, 119, 1)';
+        } else if (UIIdex < 11) {
+            color = 'rgba(170, 124, 255, 0.724)';
+        } else {
+            color = 'rgb(148, 255, 250)';
+        }
+
+        this.UVProgress.style.width = `${Math.round((UIIdex / maxvalue) * 100)}%`;
+        this.UVProgress.style.backgroundColor = color;
     }
 }
 
