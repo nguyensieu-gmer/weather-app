@@ -6,3 +6,6 @@ https://aqicn.org/api/
 
 UI preferen
 https://www.youtube.com/watch?v=MIYQR-Ybrn4
+
+weather icon
+https://www.magnific.com/app
