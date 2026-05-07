@@ -47,6 +47,8 @@ class RenderData {
         this.temperature = document.getElementById('temp');
         this.air = document.getElementById('airquality');
         this.UVIndex = document.getElementById('uvindex');
+        this.UIweather = document.querySelector('.weather');
+        this.error = document.querySelector('.error');
 
         this.bindEvent();
     }
@@ -81,11 +83,13 @@ class RenderData {
                 Math.round(weather.currentConditions.temp) + '°C';
             this.air.textContent = airQuality.data.aqi;
             this.UVIndex.textContent = weather.currentConditions.uvindex;
-        } catch (error) {
-            console.error(error);
-            alert(error);
 
-            // handle error here
+            this.UIweather.style.display = 'block';
+            this.error.style.display = 'none';
+        } catch (error) {
+            this.UIweather.style.display = 'none';
+            this.error.style.display = 'block';
+            console.error(error);
         }
     }
 

@@ -167,3 +167,17 @@ h6 {
 .detail .col img {
   width: 3rem;
 }
+
+/* weather display */
+.weather {
+  display: none;
+}
+
+/* error */
+.error {
+  text-align: left;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  font-size: 1rem;
+  display: none;
+}
