@@ -73,8 +73,8 @@ h6 {
 /* container */
 
 .container {
-  width: 90%;
-  max-width: 30rem;
+  width: 30rem;
+  min-width: 30rem;
   background: linear-gradient(135deg, #00feba, #5b548a);
   color: #fff;
   margin: 6.3rem auto 0;

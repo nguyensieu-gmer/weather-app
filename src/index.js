@@ -14,6 +14,7 @@ class FetchData {
             throw Error(`HTTP ERROR! Status: ${response.status}`);
         }
         const json = await response.json();
+        console.log(json);
         return json;
     }
 
@@ -39,6 +40,7 @@ class RenderData {
 
         this.searchBtn = document.getElementById('search_btn');
         this.inputCity = document.getElementById('input_city');
+        this.weatherIcon = document.getElementById('weather_icon');
 
         this.bindEvent();
     }
@@ -62,17 +64,31 @@ class RenderData {
                 this.fetchData.takeWeatherConditionOfCity(city),
                 this.fetchData.takeAirQualityOfCity(city),
             ]);
+            const icon = weather.currentConditions.icon;
+
+            this.getIcon(icon);
+
             document.getElementById('city').textContent = weather.address;
             document.getElementById('temp').textContent =
                 Math.round(weather.currentConditions.temp) + '°C';
-            // document.getElementById('AQI').textContent =
-            //     airQuality.data.aqi + 'AQI';
+            document.getElementById('airquality').textContent =
+                airQuality.data.aqi + 'AQI';
         } catch (error) {
             console.error(error);
             alert(error);
 
             // handle error here
         }
+    }
+
+    async getIcon(weatherIcon) {
+        let icon;
+        try {
+            icon = await import(`./weather_icon_library/${weatherIcon}.png`);
+        } catch {
+            icon = await import(`./weather_icon_library/clear-day.png`);
+        }
+        this.weatherIcon.src = icon.default;
     }
 }
 
