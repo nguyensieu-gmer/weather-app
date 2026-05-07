@@ -1,3 +1,5 @@
+import './style.css';
+
 class FetchData {
     constructor() {
         this.weatherAPIKey = 'LNVCDZJPD9GVSBRL4W4DENXNH';
@@ -63,8 +65,8 @@ class RenderData {
             document.getElementById('city').textContent = weather.address;
             document.getElementById('temp').textContent =
                 Math.round(weather.currentConditions.temp) + '°C';
-            document.getElementById('AQI').textContent =
-                airQuality.data.aqi + 'AQI';
+            // document.getElementById('AQI').textContent =
+            //     airQuality.data.aqi + 'AQI';
         } catch (error) {
             console.error(error);
             alert(error);

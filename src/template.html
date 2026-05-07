@@ -6,14 +6,34 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="search">
-      <input type="text" placeholder="Enter city name" id="input_city" />
-      <button id="search_btn"><img src="./images/search.png" alt="" /></button>
-    </div>
-    <div class="weather">
-      <h1 id="temp">21°C</h1>
-      <h2 id="city">berlin</h2>
-      <h2 id="AQI">34</h2>
+    <div class="container">
+      <div class="search">
+        <input type="text" placeholder="Enter city name" id="input_city" />
+        <button id="search_btn">
+          <img src="./images/search.png" spellcheck="false" alt="" />
+        </button>
+      </div>
+      <div class="weather">
+        <img src="./images/rain.png" alt="" id="weather_icon" />
+        <h1 id="temp">21°C</h1>
+        <h2 id="city">berlin</h2>
+        <div class="detail">
+          <div class="col">
+            <img src="./images/humidity.png" alt="" />
+            <div>
+              <p class="humidity">50%</p>
+              <p>Humidity</p>
+            </div>
+          </div>
+          <div class="col">
+            <img src="./images/wind.png" alt="" />
+            <div>
+              <p class="wind">15 km/h</p>
+              <p>Wind speed</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

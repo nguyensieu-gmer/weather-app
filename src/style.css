@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 /*
   Josh's Custom CSS Reset
   https://www.joshwcomeau.com/css/custom-css-reset/
@@ -22,6 +23,8 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  font-family: 'Montserrat', sans-serif;
+  background: #222;
 }
 
 img,
@@ -65,4 +68,100 @@ h6 {
 #root,
 #__next {
   isolation: isolate;
+}
+
+/* container */
+
+.container {
+  width: 90%;
+  max-width: 30rem;
+  background: linear-gradient(135deg, #00feba, #5b548a);
+  color: #fff;
+  margin: 6.3rem auto 0;
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+}
+
+/* search */
+
+.search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search #input_city {
+  outline: 0;
+  border: 0;
+  background-color: #ebfffc;
+  color: #555;
+  padding: 1rem 2rem;
+  height: 4rem;
+  border-radius: 30px;
+  flex: 1;
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.search #search_btn {
+  outline: 0;
+  border: 0;
+  background-color: #ebfffc;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.search #search_btn img {
+  width: 1.4rem;
+  height: auto;
+}
+
+/* weather */
+.weather {
+  text-align: center;
+}
+
+.weather #weather_icon {
+  width: 10.625rem;
+  margin: 2rem auto 0;
+}
+
+.weather h1 {
+  font-size: 5rem;
+  font-weight: 500;
+}
+
+.weather h2 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-top: -0.625rem;
+}
+
+/* detail */
+.detail {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 0.625rem;
+}
+
+.detail .col {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: center;
+  justify-self: center;
+  align-self: center;
+}
+
+.detail .col img {
+  width: 3rem;
 }
