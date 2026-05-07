@@ -8,4 +8,6 @@ UI preferen
 https://www.youtube.com/watch?v=MIYQR-Ybrn4
 
 weather icon
+thank you so much
+công đức vô lượng
 https://www.magnific.com/app

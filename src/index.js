@@ -41,6 +41,12 @@ class RenderData {
         this.searchBtn = document.getElementById('search_btn');
         this.inputCity = document.getElementById('input_city');
         this.weatherIcon = document.getElementById('weather_icon');
+        this.precipProb = document.getElementById('precipprob');
+        this.humidity = document.getElementById('humidity');
+        this.currentCity = document.getElementById('city');
+        this.temperature = document.getElementById('temp');
+        this.air = document.getElementById('airquality');
+        this.UVIndex = document.getElementById('uvindex');
 
         this.bindEvent();
     }
@@ -64,15 +70,17 @@ class RenderData {
                 this.fetchData.takeWeatherConditionOfCity(city),
                 this.fetchData.takeAirQualityOfCity(city),
             ]);
-            const icon = weather.currentConditions.icon;
 
-            this.getIcon(icon);
-
-            document.getElementById('city').textContent = weather.address;
-            document.getElementById('temp').textContent =
+            this.getIcon(weather.currentConditions.icon);
+            this.precipProb.textContent =
+                weather.currentConditions.precipprob + '%';
+            this.humidity.textContent =
+                weather.currentConditions.humidity + '%';
+            this.currentCity.textContent = weather.address;
+            this.temperature.textContent =
                 Math.round(weather.currentConditions.temp) + '°C';
-            document.getElementById('airquality').textContent =
-                airQuality.data.aqi + 'AQI';
+            this.air.textContent = airQuality.data.aqi;
+            this.UVIndex.textContent = weather.currentConditions.uvindex;
         } catch (error) {
             console.error(error);
             alert(error);
