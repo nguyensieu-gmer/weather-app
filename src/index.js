@@ -117,22 +117,22 @@ class RenderData {
         this.weatherIcon.src = icon.default;
     }
 
-    renderUVProgress(UIIdex, maxvalue) {
+    renderUVProgress(UVIndex, maxvalue) {
         // maxvalue = 11+
         let color;
-        if (UIIdex < 2) {
+        if (UVIndex < 2) {
             color = 'rgba(121, 254, 121, 0.508)';
-        } else if (UIIdex < 6) {
+        } else if (UVIndex < 6) {
             color = 'rgba(255, 247, 105, 0.825)';
-        } else if (UIIdex < 8) {
+        } else if (UVIndex < 8) {
             color = 'rgba(255, 119, 119, 1)';
-        } else if (UIIdex < 11) {
+        } else if (UVIndex < 11) {
             color = 'rgba(170, 124, 255, 0.724)';
         } else {
             color = 'rgb(148, 255, 250)';
         }
 
-        this.UVProgress.style.width = `${Math.round((UIIdex / maxvalue) * 100)}%`;
+        this.UVProgress.style.width = `${Math.round((UVIndex / maxvalue) * 100)}%`;
         this.UVProgress.style.backgroundColor = color;
     }
 
