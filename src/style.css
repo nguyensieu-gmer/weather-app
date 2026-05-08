@@ -198,7 +198,5 @@ h6 {
 .progress .progress__fill {
   height: 100%;
   max-width: 100%;
-  width: 50%;
-  background-color: rgba(170, 124, 255, 0.724);
   border-radius: 50px;
 }

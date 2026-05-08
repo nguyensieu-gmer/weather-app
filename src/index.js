@@ -50,6 +50,7 @@ class RenderData {
         this.UIweather = document.querySelector('.weather');
         this.error = document.querySelector('.error');
         this.UVProgress = document.getElementById('UV_progress');
+        this.AOIProgress = document.getElementById('AOI_progress');
 
         this.bindEvent();
     }
@@ -83,8 +84,6 @@ class RenderData {
                 Math.round(weather.currentConditions.temp) + '°C';
             this.UVIndex.textContent = weather.currentConditions.uvindex;
 
-            console.log(weather.currentConditions.uvindex);
-
             this.renderUVProgress(weather.currentConditions.uvindex, 11);
 
             this.UIweather.style.display = 'block';
@@ -99,8 +98,11 @@ class RenderData {
     async renderAQI(city) {
         try {
             const airQuality = await this.fetchData.takeAirQualityOfCity(city);
-            this.air.textContent =
-                airQuality.data.aqi !== '-' ? airQuality.data.aqi : 'Not found';
+            if (airQuality.data.aqi === '-') {
+                throw Error('Not found station');
+            }
+            this.air.textContent = airQuality.data.aqi;
+            this.renderAQIProgress(airQuality.data.aqi, 310);
         } catch (error) {
             console.error(error);
             this.air.textContent = 'Not found';
@@ -134,6 +136,27 @@ class RenderData {
 
         this.UVProgress.style.width = `${Math.round((UIIdex / maxvalue) * 100)}%`;
         this.UVProgress.style.backgroundColor = color;
+    }
+
+    renderAQIProgress(AQI, maxvalue) {
+        // maxvalue is 310+
+        let color;
+        if (AQI < 51) {
+            color = '#44f6ba9a';
+        } else if (AQI < 101) {
+            color = 'rgba(255, 221, 51, 0.55)';
+        } else if (AQI < 151) {
+            color = '#ff9933';
+        } else if (AQI < 201) {
+            color = 'rgba(204, 0, 51, 0.64)';
+        } else if (AQI < 301) {
+            color = '#66009998';
+        } else {
+            color = '#7e0024aa';
+        }
+
+        this.AOIProgress.style.width = `${Math.round((AQI / maxvalue) * 100)}%`;
+        this.AOIProgress.style.backgroundColor = color;
     }
 }
 
