@@ -14,7 +14,6 @@ class FetchData {
             throw Error(`HTTP ERROR! Status: ${response.status}`);
         }
         const json = await response.json();
-        console.log(json);
         return json;
     }
 
@@ -26,7 +25,6 @@ class FetchData {
             throw Error(`HTTP ERROR! status: ${response.status}`);
         }
         const json = await response.json();
-        console.log(json);
         if (json.status === 'error') {
             throw Error(`Not valid city`);
         }
